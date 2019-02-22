@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BOOK CLUB</title>
+        <link rel = "stylesheet" href = "style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     </head>
+
+
+    <body>
+        <div id="app">
+        <div id="wrapper">
+
+        
+           
+            
+            <div id ="mainpagebuttons" v-show="isMainPageButtons">
+                
+            <h3>Book Club</h3>
+            <ul>
+                    <li><button class="nav">HOME</button></li>
+                    <li><button class="nav" v-on:click="showCompletedList"> MY BOOKS </button></li>
+                    <li><button class="nav" v-on:click="showToReadList"> TO READ BOOKS </button></li>
+                    <li><button class="nav">SHARE</button></li>
+                    <li><input type="text" id="searchbar" placeholder="Search.." name="search">
+                    <button id="searchbutt" v-on:click="searchBooks">Submit</button></li>
+                        
+                    
+                  </ul>
+
+            </div>
+
+          
+            <div id ="landingpage" v-show="isLandingPage">
+               <h1 class="mainlogo"> BOOK CLUB </h1>
+               <div class="line"> </div>
+
+
+               <div id="landingbuttons" v-show="isLandingButtons">
+                    <button id="loginbutton" class="buttons" v-on:click="loginbutton"> LOG IN </button> <br>
+                    <button class="buttons" v-on:click="signupbutton"> SIGN UP </button> <br>
+               </div>
+               
+
+
+                <div id="logInPage" v-show="isLogPage">        
+                    <h2>LOG IN </h2><br>
+                        <input type ="text" v-model="logemail" placeholder="EMAIL"><br>
+                        <button id ="loginpagebutton" class="subbutt" v-on:click="mainpage">ENTER</button>
+                </div>
+
+
+                    
+                <div id="singUpPage" v-show="isSignPage">
+
+                    <h2>SIGN UP</h2><br>
+                        <input type ="text" v-model="signname" placeholder="FULL NAME"><br>
+                        <input type ="text" v-model="signemail" placeholder="EMAIL"><br>
+                        <button id ="signpagebutton" class="subbutt" v-on:click="addUser" >SUBMIT</button>
+                </div>
+                   
+                </div>
+
+        <div id ="MainPage" v-show="isMainPage">  
+
+            <div id ="leftbox">
+
+            </div> 
+
+            <div id="CompletedListPage" v-show="isCompletedList">
+                    <!--find all that completed is true-->
+                        <h2>My Books</h2>
+                        <button class="subbutt" v-on:click="showAddBook">Add Book</button>
+                        
+
+            </div>
+
+
+            <div id="ToReadListPage" v-show="isToReadList">
+                    <h2> To Read List </h2>
+                    <button class="subbutt" v-on:click="showAddBook">Add Book</button>
+            </div>
+
+            <div id="addBookPage" v-show="isAddBookPage">
+                <h2>Add Book to Your Library</h2>
+
+                <div v-show="isSearchForm">
+                        <input type ="text" v-model="newBook.title" placeholder="TITLE"><br>
+                        <button class="subbutt" v-on:click="searchBooks">Search</button>
+                </div>        
+
+                    <div v-show="isAddForm">
+                    <input type ="text" v-model="newBook.title" placeholder="TITLE"><br>
+                    <input type ="text" v-model="newBook.author" placeholder="AUTHOR'S NAME"><br>
+                    <input type="checkbox" v-model="newBook.completed">Completed</input>
+                    <input type="checkbox">To Read</input>
+                    <div v-show="newBook.completed">
+                        <input type="date" v-model="newBook.dated">
+                        <select name="rating" v-model="newBook.rating">
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Star</option>
+                            <option value="3">3 Star</option>
+                        </select>
+                    </div>  
+                    <button class="subbutt" v-show="isAddBookShow" v-on:click="addBook">Submit</button>
+                    </div>
+
+            
+              
+            
+       
+            <div id="searchResultsPage" v-show="isSearchResultsPage">
+                <h3>Search Results</h3>
+                    <div v-for="book in bookSearchResults" v-on:click="selectSearchResult(book)">
+                            <strong>Title: </strong>{{ book.title }}<br><br>
+                            <img v-bind:src="book.image"><br><br>
+                            <strong>Author: </strong>{{ book.author }}<br>
+                            <button v-on:click="showAddForm" >Select</button>
+                            
+                    </div>
+
+            </div>
+            </div>
+
+
+        </div>    
+</div>
+</div>
+
+
+        <script src ="vue.js"></script>
+        <script src ="app.js"></script>
+    </body>
+</html>

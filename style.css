@@ -1,0 +1,327 @@
+@font-face {
+    font-family: Archer;
+    src: url(Archer-Book-Pro.oft);
+    font-family: Gotham;
+    src: url(GothamCondensed-Bold.otf);
+    
+ }
+body {
+    margin: auto 0;
+}
+
+
+#wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 800px;
+    background-color: #313131;
+
+    
+    
+}
+
+
+
+/* LANDING PAGE */
+
+#landingpage {
+    background-image: url("landingpage.jpg");
+    background-size: cover;
+    width:100%;
+}
+
+
+.mainlogo {
+    text-align: right;
+    font-size:105px;
+    margin-bottom: 0px;
+    margin-left:20px;
+    margin-top: 20px;
+    padding-right: 15px;
+    font-family: Gotham;
+    color: #997ADB;
+    text-shadow: 0 0 10px #000, 0 0 10px #fff, 0 0 20px #997ADB, 0 0 30px #997ADB, 0 0 40px #997ADB, 0 0 55px #997ADB, 0 0 75px #997ADB;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: white;
+    
+}
+
+
+
+.line {
+    border-bottom-style:solid;
+    width: 350px;
+    color: #22C6B0;
+    margin-left: 1070px;
+    margin-top: 25px;
+
+
+}
+
+
+                        /* BUTTONS */
+
+.buttons {
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-left:100px;
+    font-family: Archer;
+    
+}
+
+#mainpagebuttons {
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+    height: 800px;
+    background-color:black;
+  }
+
+ #mainpagebuttons button {
+     border: none;
+
+ } 
+  .nav {
+    font-family: Archer;
+    font-size: 20px;
+    padding: 10px;
+    background-color: black;
+    color: white;
+  }
+
+#searchbar {
+    margin-left: 10px;
+    background-color: white;
+    color: #212121;
+    padding: 5px;
+    width: 175px;
+    height: 35px;
+}
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+  }
+  
+
+  
+
+  h3 {
+      color: #997ADB;
+      text-shadow: 0 0 3px #000, 0 0 3px #fff, 0 0 5px #997ADB, 0 0 10px #997ADB, 0 0 12px #997ADB, 0 0 15px #997ADB, 0 0 20px #997ADB;
+      font-size: 40px;
+      font-family: Gotham;
+      padding: 10px;
+      border: 2px solid #22C6B0;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: white;
+      background-color: #313131;
+      margin: 10px;
+
+  }
+
+
+
+#landingbuttons button {
+    font-size: 40px;
+    margin-left:1050px;
+    text-align: right;
+}
+
+#loginbutton {
+    margin-top: 50px;
+}
+
+#MainPage {
+    background-color: white;
+}
+
+#searchbutt {
+    background-color: #87E873;
+    font-size: 20px;
+    padding: 5px;
+    color: black;
+    font-family: Gotham;
+    height: 35px;
+}
+
+.subbutt {
+        
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 250px;
+    background-color: #87E873;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px #87e873;
+    font-family: archer;
+    margin-top:40px;
+
+
+}
+
+                        /* PAGES */
+
+
+/* LOG IN PAGE */
+#logInPage {
+    background-color: black;
+    border-radius: 15px;
+    width: 400px;
+    height:400px;
+    position: absolute;
+    z-index: 15;
+    top: 15%;
+    left: 40%;
+    text-align:center;
+    border: solid 1px white;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 55px #fff, 0 0 75px #fff;
+    
+}
+
+
+/* SIGN UP PAGE */
+#singUpPage {
+    background-color:black;
+    width: 400px;
+    height:400px;
+    position: absolute;
+    z-index: 15;
+    top: 15%;
+    left: 40%;
+    text-align:center;
+    border: solid 1px#fff;;
+    border-radius: 15px;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 55px #fff, 0 0 75px #fff;
+}
+
+
+/* Completed Pages */
+#CompletedListPage {
+    background-color: #212121;
+    width: 1135px;
+    height:800px;
+    position: absolute;
+    z-index: 15;
+    left: 20%;
+    text-align:center;
+    
+}
+
+
+/* ADD BOOK PAGE */
+#addBookPage {
+    background-color:pink;
+    width: 1135px;
+    height:350px;
+    position: absolute;
+    z-index: 15;
+    left: 20%;
+    text-align:center;
+    border: 2px solid black;
+    
+}
+
+
+#searchResultsPage {
+    background-color:#313131;
+    width: 1400px;
+    height: 570px;
+    position: absolute;
+    z-index: 15;
+    top: 30%;
+    float:left;
+    
+}
+
+#searchResultsPage div {
+    width: 220px;
+    height:300px;
+    float: left;
+    text-align:center;
+    margin: 5px 10px 5px 10px;
+    padding: 10px 0px 0px 0px;
+    border: 1px white solid;
+    color:white;
+    font-family: Archer;
+    
+}
+
+#searchResultsPage img {
+    width:100px;
+    height:150px;
+}
+
+#searchResultsPage h3 {
+    margin-top: 5px;
+    margin-bottom:5px;
+    width: 1186px;
+}
+
+#ToReadListPage {
+    background-color: #303030;
+    width: 1135px;
+    height:130px;
+    position: absolute;
+    z-index: 15;
+    left: 20%;
+    text-align:center;
+    border: solid 1px white;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 55px #fff, 0 0 75px #fff;
+    
+}
+
+
+#addbookpage input {
+    width: 300px;
+}
+
+
+h2 {
+    text-align: center;
+    font-size: 75px;
+    color: #f97fde;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Gotham;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #f97fde, 0 0 30px #f97fde, 0 0 40px #f97fde, 0 0 55px #f97fde, 0 0 75px #f97fde;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+
+input {
+    font-size: 24px;
+    padding:5px;
+    border:none;
+    border-bottom: 2px solid white;
+    font-family: Archer;
+    background-color:black;
+    color: white;
+}
+
+::placeholder { 
+    color: white; }
+
+
+                    /* RATING STARS */
+
+.rating {
+    color: white;
+}
