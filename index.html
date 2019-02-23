@@ -63,17 +63,24 @@
 
         <div id ="MainPage" v-show="isMainPage">  
 
-            <div id ="leftbox">
-
-            </div> 
-
             <div id="CompletedListPage" v-show="isCompletedList">
-                    <!--find all that completed is true-->
                         <h2>My Books</h2>
                         <button class="subbutt" v-on:click="showAddBook">Add Book</button>
+
+                        <div v-for="cbook in completedBooks">
+                                <strong>Title: </strong>{{ cbook.title }}<br><br>
+                                <img v-bind:src="cbook.image"><br><br>
+                                <strong>Author: </strong>{{ cbook.author }}<br>
+                                <strong>Date Completed: </strong> {{ cbook.dated }}<br>
+                                <strong>Rating: </strong> {{ cbook.rating }}
+                
+                                
+                        </div>
+
+                        
                         
 
-            </div>
+            </div> 
 
 
             <div id="ToReadListPage" v-show="isToReadList">
@@ -105,7 +112,7 @@
                     <button class="subbutt" v-show="isAddBookShow" v-on:click="addBook">Submit</button>
                     </div>
 
-            
+             
               
             
        

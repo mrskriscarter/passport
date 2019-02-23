@@ -107,6 +107,8 @@ let book = new model.Book ({
     author: req.body.author,
     dated: req.body.dated,
     rating: req.body.rating,
+    completed: req.body.completed,
+    image: req.body.image
 });
 
 book.save();

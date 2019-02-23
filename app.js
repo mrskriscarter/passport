@@ -12,6 +12,7 @@ var createBook = function (book) {
     data += `&dated=${encodeURIComponent(book.dated)}`;
     data += `&rating=${encodeURIComponent(book.rating)}`;
     data += `&completed=${encodeURIComponent(book.completed)}`;
+    data += `&image=${encodeURIComponent(book.image)}`;
 
     return fetch("http://localhost:8080/books", {
         method: "POST",
@@ -37,6 +38,14 @@ var createUser = function (user) {
 
 var getBooks = function () {
     return fetch("http://localhost:8080/books");
+};
+
+var getCompletedBooks = function () {
+    return fetch("http://localhost:8080/books?completed=true");
+};
+
+var getToReadBooks = function () {
+    return fetch("http://localhost:8080/books?completed=false");
 };
 
 var getUsers = function () {
@@ -83,7 +92,8 @@ var app = new Vue({
             author: "",
             dated: "",
             rating: "",
-            completed: false
+            completed: false,
+            image: "",
         },
 
         name: "",
@@ -96,13 +106,16 @@ var app = new Vue({
         signpass: "",
 
 
+        completedBooks: getCompletedBooks(),
+
+        ToReadBooks: [],
         bookSearchResults: [],
         books: [],
         users: [],
     },
 
     methods: {
-        addBook: function () { //make sure not to use an arrow here
+        addBook: function () { 
             createBook(this.newBook). then(response => {
                 console.log("Book was created.");
                 this.refreshBooks();
@@ -112,10 +125,10 @@ var app = new Vue({
             this.newBook = {
                 title: "",
                 author: "",
-                ISBN: "",
                 dated: "",
                 rating: "",
                 completed: false,
+                image: "",
             };
 
             this.isAddBookPage = false;
@@ -137,6 +150,9 @@ var app = new Vue({
             this.email = "";
         },
 
+        showCompletedList: function () {
+            this.completedBooks = getCompletedBooks();
+        },
 
         loginbutton: function () {
             this.isLogPage = true;
@@ -162,11 +178,6 @@ var app = new Vue({
             this.isMainPage = true;
         
 
-        },
-
-        showCompletedList: function () {
-            this.isCompletedList = true;
-            this.isToReadList = false;
         },
 
         showToReadList: function () {

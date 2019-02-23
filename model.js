@@ -8,7 +8,9 @@ const Book = new mongoose.model('Book', {
     author: String,
     dated: Date,
     rating: Number,
+    completed: Boolean,
     image: String,
+    
 
 });
 
