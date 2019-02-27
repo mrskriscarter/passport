@@ -1,0 +1,62 @@
+Notes
+
+422 Unprocessable 
+
+you dont need the 
+if (!req.body.make ||) delete it
+
+
+app.post
+    let vehicle = 
+        model:
+        make:
+
+vehicle.save().then(function (){
+    res.sendStatus(201); 
+    }, function (err) {
+        //there was a probelm saving this vehicle
+
+        if (err.errors) {
+            //are they validation errors?
+            var message = {};
+            for (var e in err.errors) {
+                messages[e] = err.errors[e].message;
+
+            }
+            console.log("error saving vehicle", messages);
+            res.status(422).json(messages);
+        } else {
+            //some unexpected error
+            res.sendStatus(500);
+        }
+    });
+});
+
+
+
+.. Schemas
+const vehicleSchema = new mongoose.Schema({
+    make: { 
+        type: String },
+    model: {
+        type:String },
+    range: {
+        type: Number,
+        Min: [150, ‘This number is too low’],
+        Max: 500 } 
+});
+
+Const Vehicle = mongoose.model(‘Vehicle’, vehicleSchema);
+
+Module.exports = {
+Vehicle: Vehicle };
+
+<div id="errors" v-if="errors.length > 0 ">
+There was a problem saving this vehicle:
+<ul>
+<li v-for="error in errors">
+    {{ error }}
+</li>
+</ul>
+</div>
+</div>

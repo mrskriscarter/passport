@@ -4,6 +4,7 @@
         <title>BOOK CLUB</title>
         <link rel = "stylesheet" href = "style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
      </head>
 
 
@@ -18,11 +19,11 @@
                 
             <h3>Book Club</h3>
             <ul>
-                    <li><button class="nav">HOME</button></li>
-                    <li><button class="nav" v-on:click="showCompletedList"> MY BOOKS </button></li>
-                    <li><button class="nav" v-on:click="showToReadList"> TO READ BOOKS </button></li>
+                    <li><button class="nav" v-on:click="showTopBookList">HOME</button></li>
+                    <li><button class="nav" v-on:click="showCompletedList"> MY BOOKS</button></li>
+                    <li><button class="nav" v-on:click="showToReadList"> TO READ</button></li>
                     <li><button class="nav">SHARE</button></li>
-                    <li><input type="text" id="searchbar" placeholder="Search.." name="search">
+                    <li><input type ="text" class="searchbar" v-model="newBook.title" placeholder="Search Title">
                     <button id="searchbutt" v-on:click="searchBooks">Submit</button></li>
                         
                     
@@ -32,7 +33,8 @@
 
           
             <div id ="landingpage" v-show="isLandingPage">
-               <h1 class="mainlogo"> BOOK CLUB </h1>
+               <h1 class="mainlogo"> BOOK  </h1>
+               <h1 class="mainlogo" style="margin-right:20px;">CLUB </h1>
                <div class="line"> </div>
 
 
@@ -44,9 +46,9 @@
 
 
                 <div id="logInPage" v-show="isLogPage">        
-                    <h2>LOG IN </h2><br>
-                        <input type ="text" v-model="logemail" placeholder="EMAIL"><br>
-                        <button id ="loginpagebutton" class="subbutt" v-on:click="mainpage">ENTER</button>
+                    <h2>LOG IN </h2><br><br><br>
+                        <input type ="text" v-model="logemail" placeholder="EMAIL"><br><br>
+                        <button id ="loginpagebutton" class="subbutt" v-on:click="showTopBookList">ENTER</button>
                 </div>
 
 
@@ -54,8 +56,8 @@
                 <div id="singUpPage" v-show="isSignPage">
 
                     <h2>SIGN UP</h2><br>
-                        <input type ="text" v-model="signname" placeholder="FULL NAME"><br>
-                        <input type ="text" v-model="signemail" placeholder="EMAIL"><br>
+                        <input type ="text" v-model="name" placeholder="FULL NAME"><br><br>
+                        <input type ="text" v-model="email" placeholder="EMAIL"><br><br>
                         <button id ="signpagebutton" class="subbutt" v-on:click="addUser" >SUBMIT</button>
                 </div>
                    
@@ -63,44 +65,68 @@
 
         <div id ="MainPage" v-show="isMainPage">  
 
+            <div id="TopBookPage" v-show="isTopBooks">
+                <h2>My Favorite Books </h2>
+                    <div v-for="book in topBooks">
+                        <strong>Title:</strong> {{ book.title }} <br>
+                        <strong>Author:</strong> {{ book.author }} <br>
+                        <img v-bind:src="book.image"><br><br>
+                        <strong>Rating: </strong> {{ book.rating }}<br>
+
+                    </div>
+
+            </div>
+
+
+
             <div id="CompletedListPage" v-show="isCompletedList">
                         <h2>My Books</h2>
-                        <button class="subbutt" v-on:click="showAddBook">Add Book</button>
+                        <button class="subbutt" v-on:click="showAddBook">Add Book</button><br>
 
-                        <div v-for="cbook in completedBooks">
-                                <strong>Title: </strong>{{ cbook.title }}<br><br>
-                                <img v-bind:src="cbook.image"><br><br>
-                                <strong>Author: </strong>{{ cbook.author }}<br>
-                                <strong>Date Completed: </strong> {{ cbook.dated }}<br>
-                                <strong>Rating: </strong> {{ cbook.rating }}
+                        <div v-for="book in completedBooks">
+                                <button id="deletebutton" v-on:click="deletebook">X</button><br>
+                                <strong>Title: </strong><br>{{ book.title }} <br>
+                                <img v-bind:src="book.image"><br><br>
+                                <strong>Author: </strong>{{ book.author }}<br>
+                                <strong>Date Completed: </strong> {{ formatDate(book.dated) }}<br>
+                                <strong>Rating: </strong> {{ book.rating }} <br>
                 
                                 
                         </div>
-
-                        
                         
 
             </div> 
 
-
             <div id="ToReadListPage" v-show="isToReadList">
                     <h2> To Read List </h2>
-                    <button class="subbutt" v-on:click="showAddBook">Add Book</button>
+                    <button class="subbutt" v-on:click="showAddBook">Add Book</button><br>
+
+                    <div v-for="book in toreadBooks">
+                            <strong>Title: </strong>{{ book.title }} <button id="deletebutton" v-on:click="deletebook">X</button><br><br>
+                            <img v-bind:src="book.image"><br><br>
+                            <strong>Author: </strong>{{ book.author }}<br>
+    
+                    </div>
             </div>
 
             <div id="addBookPage" v-show="isAddBookPage">
-                <h2>Add Book to Your Library</h2>
+                <h3>Search</h3>
+                <h4>For the book you want to add to your library</h4>
+            
 
                 <div v-show="isSearchForm">
-                        <input type ="text" v-model="newBook.title" placeholder="TITLE"><br>
+                        <input type ="text" class="searchbar" v-model="newBook.title" placeholder="Search Title"><br>
                         <button class="subbutt" v-on:click="searchBooks">Search</button>
-                </div>        
+                </div>   
+            </div>     
 
-                    <div v-show="isAddForm">
-                    <input type ="text" v-model="newBook.title" placeholder="TITLE"><br>
-                    <input type ="text" v-model="newBook.author" placeholder="AUTHOR'S NAME"><br>
-                    <input type="checkbox" v-model="newBook.completed">Completed</input>
-                    <input type="checkbox">To Read</input>
+                    <div id="addbookform" v-show="isAddForm">
+                            <h2>Add Book</h2>
+                    Title: <br> <input type ="text" v-model="newBook.title" placeholder="TITLE"><br>
+                    Author's Name: <br><input type ="text" v-model="newBook.author" placeholder="AUTHOR'S NAME"><br>
+                    <h4> Which List Does This Book Go In?</h4>
+                    <input type="checkbox" v-model="newBook.completed">Completed</input><br>
+                    <input type="checkbox">To Read</input><br>
                     <div v-show="newBook.completed">
                         <input type="date" v-model="newBook.dated">
                         <select name="rating" v-model="newBook.rating">
@@ -108,7 +134,7 @@
                             <option value="2">2 Star</option>
                             <option value="3">3 Star</option>
                         </select>
-                    </div>  
+                    </div>  <br>
                     <button class="subbutt" v-show="isAddBookShow" v-on:click="addBook">Submit</button>
                     </div>
 
@@ -117,16 +143,16 @@
             
        
             <div id="searchResultsPage" v-show="isSearchResultsPage">
-                <h3>Search Results</h3>
+                <h2>Search Results</h2>
                     <div v-for="book in bookSearchResults" v-on:click="selectSearchResult(book)">
-                            <strong>Title: </strong>{{ book.title }}<br><br>
+                            <strong>Title: </strong><br>{{ book.title }}<br><br>
                             <img v-bind:src="book.image"><br><br>
                             <strong>Author: </strong>{{ book.author }}<br>
-                            <button v-on:click="showAddForm" >Select</button>
+                            <button id="selectbutton" v-on:click="showAddForm" >Select</button>
                             
                     </div>
 
-            </div>
+           
             </div>
 
 
@@ -137,5 +163,6 @@
 
         <script src ="vue.js"></script>
         <script src ="app.js"></script>
+        <script src ="moment.js"></script>
     </body>
 </html>

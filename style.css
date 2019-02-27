@@ -3,10 +3,16 @@
     src: url(Archer-Book-Pro.oft);
     font-family: Gotham;
     src: url(GothamCondensed-Bold.otf);
+    font-family: Denver;
+    src: url(Denver.otf);
+    font-family: Neon;
+    src: url(NEON.otf);
     
  }
 body {
     margin: auto 0;
+    height: 1000px;
+    
 }
 
 
@@ -14,10 +20,7 @@ body {
     display: flex;
     flex-wrap: nowrap;
     height: 800px;
-    background-color: #313131;
-
-    
-    
+    background-color:#202020;
 }
 
 
@@ -33,15 +36,15 @@ body {
 
 .mainlogo {
     text-align: right;
-    font-size:105px;
+    font-size:102px;
     margin-bottom: 0px;
     margin-left:20px;
     margin-top: 20px;
     padding-right: 15px;
-    font-family: Gotham;
+    font-family: NEON;
     color: #997ADB;
     text-shadow: 0 0 10px #000, 0 0 10px #fff, 0 0 20px #997ADB, 0 0 30px #997ADB, 0 0 40px #997ADB, 0 0 55px #997ADB, 0 0 75px #997ADB;
-    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: white;
     
 }
@@ -54,8 +57,6 @@ body {
     color: #22C6B0;
     margin-left: 1070px;
     margin-top: 25px;
-
-
 }
 
 
@@ -73,7 +74,7 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     margin-left:100px;
-    font-family: Archer;
+    font-family: 'Open Sans Condensed', sans-serif;
     
 }
 
@@ -81,7 +82,7 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 20%;
-    height: 800px;
+    height: 1200px;
     background-color:black;
   }
 
@@ -89,21 +90,35 @@ body {
      border: none;
 
  } 
+
+ #MainPage {
+     background-color: #202020;
+     height: 1200px;
+ }
   .nav {
-    font-family: Archer;
-    font-size: 20px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 30px;
     padding: 10px;
     background-color: black;
     color: white;
   }
 
-#searchbar {
+.nav:hover {
+  background-color: #22C6B0;    
+}
+
+.buttons:hover {
+    background-color: #22C6B0;
+}
+
+.searchbar {
     margin-left: 10px;
     background-color: white;
-    color: #212121;
+    color: #202020;
     padding: 5px;
-    width: 175px;
+    width: 200px;
     height: 35px;
+    margin-bottom: 20px
 }
 
   ul {
@@ -115,22 +130,21 @@ body {
   }
   
 
-  
-
   h3 {
       color: #997ADB;
       text-shadow: 0 0 3px #000, 0 0 3px #fff, 0 0 5px #997ADB, 0 0 10px #997ADB, 0 0 12px #997ADB, 0 0 15px #997ADB, 0 0 20px #997ADB;
-      font-size: 40px;
-      font-family: Gotham;
+      font-size: 34px;
+      font-family: NEON;
       padding: 10px;
       border: 2px solid #22C6B0;
       -webkit-text-stroke-width: 1px;
       -webkit-text-stroke-color: white;
-      background-color: #313131;
+      background-color: black;
       margin: 10px;
 
   }
 
+  
 
 
 #landingbuttons button {
@@ -143,37 +157,34 @@ body {
     margin-top: 50px;
 }
 
-#MainPage {
-    background-color: white;
-}
+
 
 #searchbutt {
     background-color: #87E873;
     font-size: 20px;
     padding: 5px;
     color: black;
-    font-family: Gotham;
+    font-family: 'Open Sans Condensed', sans-serif;
     height: 35px;
 }
 
 .subbutt {
         
     color: black;
-    padding: 15px 32px;
+    padding: 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 24px;
-    margin: 4px 2px;
+    margin: 2px;
     cursor: pointer;
-    width: 250px;
+    width: 150px;
     background-color: #87E873;
-    border-radius: 15px;
-    box-shadow: 5px 5px 10px #87e873;
-    font-family: archer;
-    margin-top:40px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    margin-bottom: 25px;
 
-
+    
+    
 }
 
                         /* PAGES */
@@ -182,13 +193,12 @@ body {
 /* LOG IN PAGE */
 #logInPage {
     background-color: black;
-    border-radius: 15px;
     width: 400px;
     height:400px;
     position: absolute;
     z-index: 15;
     top: 15%;
-    left: 40%;
+    left: 36%;
     text-align:center;
     border: solid 1px white;
     box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 55px #fff, 0 0 75px #fff;
@@ -219,47 +229,66 @@ body {
     height:800px;
     position: absolute;
     z-index: 15;
-    left: 20%;
+    left: 21%;
     text-align:center;
     
+}
+
+#CompletedListPage div {
+    width: 200px;
+    height:350px;
+    float: left;
+    text-align:center;
+    margin: 5px 10px 5px 10px;
+    padding: 10px 0px 0px 0px;
+    border: 1px #f97fde solid;
+    background-color:black;
+    color: white;
+    font-family: 'Open Sans Condensed', sans-serif;
+    background-color: black;
+    
+}
+
+#CompletedListPage img {
+    width:100px;
+    height:150px;
 }
 
 
 /* ADD BOOK PAGE */
 #addBookPage {
-    background-color:pink;
+    background-color:#202020;
     width: 1135px;
     height:350px;
     position: absolute;
     z-index: 15;
     left: 20%;
     text-align:center;
-    border: 2px solid black;
     
 }
 
 
 #searchResultsPage {
-    background-color:#313131;
-    width: 1400px;
+    background-color:#202020;
+    width: 1110px;
     height: 570px;
     position: absolute;
     z-index: 15;
-    top: 30%;
     float:left;
     
 }
 
 #searchResultsPage div {
-    width: 220px;
+    width: 200px;
     height:300px;
     float: left;
     text-align:center;
     margin: 5px 10px 5px 10px;
     padding: 10px 0px 0px 0px;
-    border: 1px white solid;
+    border: 1px #f97fde solid;
+    background-color:black;
     color:white;
-    font-family: Archer;
+    font-family: 'Open Sans Condensed', sans-serif;
     
 }
 
@@ -271,22 +300,71 @@ body {
 #searchResultsPage h3 {
     margin-top: 5px;
     margin-bottom:5px;
-    width: 1186px;
+    width: 1110px;
 }
 
+            /* To Read Page */
+
 #ToReadListPage {
-    background-color: #303030;
+    background-color: #202020;
     width: 1135px;
     height:130px;
     position: absolute;
     z-index: 15;
-    left: 20%;
+    left: 21%;
     text-align:center;
-    border: solid 1px white;
-    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 55px #fff, 0 0 75px #fff;
     
 }
 
+#ToReadListPage div {
+    width: 200px;
+    height:300px;
+    float: left;
+    text-align:center;
+    margin: 5px 10px 5px 10px;
+    padding: 10px 0px 0px 0px;
+    border: 1px #f97fde solid;
+    background-color:black;
+    color:white;
+    font-family: 'Open Sans Condensed', sans-serif;
+    
+}
+
+#ToReadListPage img {
+    width:100px;
+    height:150px;
+}
+
+            /* Top Books Page */
+
+#TopBookPage {
+    background-color: #212121;
+    width: 1135px;
+    height:800px;
+    position: absolute;
+    z-index: 15;
+    left: 21%;
+    text-align:center;
+    
+}
+#TopBookPage div {
+    width: 200px;
+    height:300px;
+    float: left;
+    text-align:center;
+    margin: 5px 10px 5px 10px;
+    padding: 10px 0px 0px 0px;
+    border: 1px #f97fde solid;
+    background-color:black;
+    color:white;
+    font-family: 'Open Sans Condensed', sans-serif;
+    
+}
+
+#TopBookPage img {
+    width:100px;
+    height:150px;
+}
 
 #addbookpage input {
     width: 300px;
@@ -295,14 +373,14 @@ body {
 
 h2 {
     text-align: center;
-    font-size: 75px;
+    font-size: 55px;
     color: #f97fde;
-    margin-top: 10px;
+    margin-top: 40px;
     margin-bottom: 10px;
-    font-family: Gotham;
+    font-family: NEON;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #f97fde, 0 0 30px #f97fde, 0 0 40px #f97fde, 0 0 55px #f97fde, 0 0 75px #f97fde;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
 }
 
 
@@ -311,17 +389,45 @@ input {
     padding:5px;
     border:none;
     border-bottom: 2px solid white;
-    font-family: Archer;
-    background-color:black;
-    color: white;
+    font-family: 'Open Sans Condensed', sans-serif;
+    background-color:white;
+    color: black;
 }
 
 ::placeholder { 
-    color: white; }
+    color: black; }
 
-
-                    /* RATING STARS */
 
 .rating {
     color: white;
+}
+
+#addbookform {
+    color:purple;
+    width:500px;
+    margin-left: 330px;
+    margin-top: 80px;
+}
+
+#addbookpage {
+    width: 500px;
+    left: 580px;
+    top: 79px;
+}
+
+#selectbutton {
+    color: black;
+    background-color: #f97fde;
+    font-family: 'Open Sans Condensed', sans-serif;
+    border: none;
+    font-size: 18px;
+}
+
+#deletebutton {
+    background-color: black;
+    color: red;
+    border: none;
+    font-size: 18px;
+    margin-left: 167px;
+    margin-bottom: 0px;
 }

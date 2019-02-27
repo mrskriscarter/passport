@@ -48,6 +48,10 @@ var getToReadBooks = function () {
     return fetch("http://localhost:8080/books?completed=false");
 };
 
+var getTopBooks = function () {
+    return fetch("http://localhost:8080/books?rating=3");
+}
+
 var getUsers = function () {
     return fetch("http://localhost:8080/users");
 };
@@ -86,6 +90,7 @@ var app = new Vue({
         isAddForm: false,
         isSearchForm: false,
         isSearchResultsPage: false,
+        isTopBooks: false,
 
         newBook: {
             title: "",
@@ -107,15 +112,55 @@ var app = new Vue({
 
 
         completedBooks: getCompletedBooks(),
+        toreadBooks: getToReadBooks (),
+        topBooks: getTopBooks (),
 
-        ToReadBooks: [],
+
         bookSearchResults: [],
         books: [],
         users: [],
+        errors : [],
+       
     },
 
     methods: {
+        validateBook: function () {
+            this.errors = [];
+            if (this.title.length == 0 ) {
+                this.errors.push("You must Enter a title of a book.")
+                //fail
+            }
+            if (this.author.length == 0){
+                this.errors.push("You have to have a Author selected")
+                //fail 
+            }
+            
+        },
+
+        validateUser: function () {
+            this.errors = [];
+            if (this.name.length == 0 ) {
+                this.errors.push("Name is required")
+            }
+            if (this.email.length == 0){
+                this.errors.push("Email is required")
+            }
+        },
+
+        formatDate: function(dated) {
+            return moment(dated).format("MMM Do YYYY");
+        },
+
         addBook: function () { 
+            this.validateBook();
+            if (this.errors.length == 0) {
+                return;
+            }
+            this.validateUser ();
+            if (this.errors.length == 0) {
+                return;
+            }
+
             createBook(this.newBook). then(response => {
                 console.log("Book was created.");
                 this.refreshBooks();
@@ -132,8 +177,8 @@ var app = new Vue({
             };
 
             this.isAddBookPage = false;
-            this.isCompletedList = true;
-            this.isAddBookPage = false;
+            this.isAddForm = false;
+            this.ismainpage = true;
             
         },
 
@@ -145,20 +190,81 @@ var app = new Vue({
                 this.refreshUsers();
                 console.log("User was created");
             });
-
+            
             this.name = "";
             this.email = "";
+            this.isMainPageButtons = true;
+            this.isLogPage = false;
+            this.isLandingPage = false;
+            this.isMainPage = true;
+            this.isCompletedList = false;
+            this.isToReadList = false;
+            this.isTopBooks = true;
         },
 
+
         showCompletedList: function () {
-            this.completedBooks = getCompletedBooks();
+            this.isToReadList = false;
+            this.isCompletedList = true;
+            this.isSearchResults = false;
+            this.isSearchForm = false;
+            this.isSearchResultsPage = false;
+            getCompletedBooks()
+                .then(result => result.json())
+                .then(json => {
+                this.completedBooks = json
+                console.log(this.completedBooks);
+            });
         },
+
+        showToReadList: function () {
+            this.isToReadList = true;
+            this.isCompletedList = false;
+            this.isSearchResults = false;
+            this.isSearchForm = false;
+            this.isTopBooks = false;
+            getToReadBooks()
+                .then(result => result.json())
+                .then(json => {
+                this.toreadBooks = json
+                console.log(this.toreadBooks);
+            });
+        },
+
+        showTopBookList: function () {
+           this.isTopBooks = true;
+           this.isSearchForm = false;
+           this.isMainPageButtons = true;
+           this.isLogPage = false;
+           this.isLandingPage = false;
+           this.isMainPage = true;
+           this.isCompletedList = false;
+           this.isToReadList = false;
+            getTopBooks()
+                .then(result => result.json())
+                .then(json => {
+                this.topBooks = json
+                console.log(this.topBooks);
+            });
+        },
+
+
+
+        deletebook: function (book) { 
+            deleteBook(book).then(response => {
+                this.refreshBooks();
+                console.log("book was deleted");
+              });
+          },
+
+
 
         loginbutton: function () {
             this.isLogPage = true;
             this.isLandingButtons = false;
 
         },
+
 
         signupbutton: function () {
             this.isSignPage = true;
@@ -170,19 +276,10 @@ var app = new Vue({
         },
 
         mainpage: function () {
-            this.isLandingButtons = false;
-            this.isMainPageButtons = true;
-            this.isLogPage = false;
-            this.isLandingPage = false;
-            this.isCompletedList = true;
-            this.isMainPage = true;
+            
+
         
 
-        },
-
-        showToReadList: function () {
-            this.isToReadList = true;
-            this.isCompletedList = false;
         },
 
         showAddBook: function () {
@@ -190,6 +287,7 @@ var app = new Vue({
             this.isCompletedList = false;
             this.isToReadList = false;
             this.isSearchForm = true;
+            this.isTopBooks = false;
 
         },
 
@@ -231,6 +329,7 @@ var app = new Vue({
             this.isSearchResultsPage = true;
             this.isAddForm = false;
             this.isSearchForm = false;
+            this.isAddBookPage = false;
             getGoogleBookInfo(this.newBook.title).then(response => {
                 response.json().then(data => {
                     console.log(data);
