@@ -3,6 +3,8 @@ var getGoogleBookInfo = function (bookName) {
     return fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${bookName}&key=AIzaSyDAC0_WOd94tVrnHii1zNP7VCDBdUBhrzc`);
 }
 
+var ROOT_URL = "https://bookclubweb.herokuapp.com/";
+
 
 
 
@@ -14,7 +16,7 @@ var createBook = function (book) {
     data += `&completed=${encodeURIComponent(book.completed)}`;
     data += `&image=${encodeURIComponent(book.image)}`;
 
-    return fetch("http://localhost:8080/books", {
+    return fetch(`${ROOT_URL}/books`, {
         method: "POST",
         headers: {
             "Content-type": "application/x-www-form-urlencoded"
@@ -27,7 +29,7 @@ var createUser = function (user) {
     var data = `name=${encodeURIComponent(user.name)}`;
     data += `&email=${encodeURIComponent(user.email)}`;
 
-    return fetch("http://localhost:8080/users", {
+    return fetch(`${ROOT_URL}/users`, {
         method: "POST",
         headers: {
             "Content-type": "application/x-www-form-urlencoded"
@@ -37,33 +39,33 @@ var createUser = function (user) {
 };
 
 var getBooks = function () {
-    return fetch("http://localhost:8080/books");
+    return fetch(`${ROOT_URL}/books`);
 };
 
 var getCompletedBooks = function () {
-    return fetch("http://localhost:8080/books?completed=true");
+    return fetch(`${ROOT_URL}/books?completed=true`);
 };
 
 var getToReadBooks = function () {
-    return fetch("http://localhost:8080/books?completed=false");
+    return fetch(`${ROOT_URL}/books?completed=false`);
 };
 
 var getTopBooks = function () {
-    return fetch("http://localhost:8080/books?rating=3");
+    return fetch(`${ROOT_URL}/books?rating=3`);
 }
 
 var getUsers = function () {
-    return fetch("http://localhost:8080/users");
+    return fetch(`${ROOT_URL}/users`);
 };
 
 var deleteBook = function (book){
-    return fetch("http://localhost:8080/books/" + book._id, {
+    return fetch(`${ROOT_URL}/books/` + book._id, {
         method: "DELETE"
     });
 };    
 
 var deleteUser = function (user){
-    return fetch("http://localhost:8080/users/" + user._id, {
+    return fetch(`${ROOT_URL}/users/` + user._id, {
         method: "DELETE"
     });
 };   
