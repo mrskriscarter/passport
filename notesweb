@@ -60,3 +60,26 @@ There was a problem saving this vehicle:
 </ul>
 </div>
 </div>
+
+
+
+1. update package.json  
+    a. engines
+    b. scripts
+2. configure server
+    a. port
+    b. static
+
+
+
+    after you git everything
+
+    heroku create
+    heroku rename __
+    git push heroku master
+
+    heroku logs
+
+    add to server folder make a create a folder called public - put all html css images commit and push 
+
+    git commit -m then push to heroku master

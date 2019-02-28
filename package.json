@@ -1,8 +1,8 @@
 {
-  "name": "helloexpress",
+  "name": "mid",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "author": "",
   "license": "ISC",
   "dependencies": {
