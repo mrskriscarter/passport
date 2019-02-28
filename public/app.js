@@ -1,11 +1,9 @@
+var ROOT_URL = "https://bookclubweb.herokuapp.com";
+
 var getGoogleBookInfo = function (bookName) {
     // https://www.googleapis.com/books/v1/volumes?q=intitle:fire&key=AIzaSyDAC0_WOd94tVrnHii1zNP7VCDBdUBhrzc
     return fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${bookName}&key=AIzaSyDAC0_WOd94tVrnHii1zNP7VCDBdUBhrzc`);
 }
-
-var ROOT_URL = "https://bookclubweb.herokuapp.com/";
-
-
 
 
 var createBook = function (book) {
