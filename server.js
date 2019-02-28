@@ -4,6 +4,7 @@ const cors = require('cors');
 const model = require('./model.js');
 
 var app = express();
+app.set('port', (process.env.PORT || 8080));
 app.use(bodyParser.urlencoded( {extended: false}));
 app.use(cors());
 
@@ -17,6 +18,10 @@ app.get('/books/', (req, res) => {
         });
     } else if (req.query.completed == "false") {
         model.Book.find({ completed: false }).then(function (books) {
+            res.json(books);
+        });
+    } else if (req.query.rating) {
+        model.Book.find({ rating: req.query.rating }).then(function (books){
             res.json(books);
         });
     } else {
@@ -167,6 +172,6 @@ user.save().then(function () {
 
 
 
-app.listen(8080, () => {
+app.listen(app.get('port'), () => {
     console.log("Server is listening.");
 });

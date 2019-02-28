@@ -84,8 +84,8 @@
                         <button class="subbutt" v-on:click="showAddBook">Add Book</button><br>
 
                         <div v-for="book in completedBooks">
-                                <button id="deletebutton" v-on:click="deletebook">X</button><br>
-                                <strong>Title: </strong><br>{{ book.title }} <br>
+                                <button id="deletebutton" v-on:click="deletebook(book)">X</button><br>
+                                <strong>Title: </strong>{{ book.title }} <br>
                                 <img v-bind:src="book.image"><br><br>
                                 <strong>Author: </strong>{{ book.author }}<br>
                                 <strong>Date Completed: </strong> {{ formatDate(book.dated) }}<br>
@@ -102,7 +102,8 @@
                     <button class="subbutt" v-on:click="showAddBook">Add Book</button><br>
 
                     <div v-for="book in toreadBooks">
-                            <strong>Title: </strong>{{ book.title }} <button id="deletebutton" v-on:click="deletebook">X</button><br><br>
+                            <button id="deletebutton" v-on:click="deletebook(book)">X</button> <br>
+                            <strong>Title: </strong>{{ book.title }} <br><br>
                             <img v-bind:src="book.image"><br><br>
                             <strong>Author: </strong>{{ book.author }}<br>
     

@@ -57,13 +57,13 @@ var getUsers = function () {
 };
 
 var deleteBook = function (book){
-    fetch("http://localhost:8080/books/" + book._id, {
+    return fetch("http://localhost:8080/books/" + book._id, {
         method: "DELETE"
     });
 };    
 
 var deleteUser = function (user){
-    fetch("http://localhost:8080/users/" + user._id, {
+    return fetch("http://localhost:8080/users/" + user._id, {
         method: "DELETE"
     });
 };   
@@ -126,11 +126,11 @@ var app = new Vue({
     methods: {
         validateBook: function () {
             this.errors = [];
-            if (this.title.length == 0 ) {
+            if (this.newBook.title.length == 0 ) {
                 this.errors.push("You must Enter a title of a book.")
                 //fail
             }
-            if (this.author.length == 0){
+            if (this.newBook.author.length == 0){
                 this.errors.push("You have to have a Author selected")
                 //fail 
             }
@@ -153,13 +153,14 @@ var app = new Vue({
 
         addBook: function () { 
             this.validateBook();
-            if (this.errors.length == 0) {
+            if (this.errors.length > 0) {
+                console.log(this.errors);
                 return;
             }
-            this.validateUser ();
-            if (this.errors.length == 0) {
-                return;
-            }
+            //this.validateUser ();
+            //if (this.errors.length == 0) {
+             //   return;
+            //}
 
             createBook(this.newBook). then(response => {
                 console.log("Book was created.");
@@ -275,12 +276,6 @@ var app = new Vue({
             this.iscompletedchecked = true;
         },
 
-        mainpage: function () {
-            
-
-        
-
-        },
 
         showAddBook: function () {
             this.isAddBookPage = true;
@@ -313,6 +308,12 @@ var app = new Vue({
                     this.books = data;
                 });
             });
+            getToReadBooks()
+                .then(result => result.json())
+                .then(json => {
+                this.toreadBooks = json
+                console.log(this.toreadBooks);
+            });
         },
 
 
@@ -338,7 +339,7 @@ var app = new Vue({
                         console.log(book.volumeInfo.title, book.volumeInfo.authors && book.volumeInfo.authors[0], book.volumeInfo.imageLinks.thumbnail);
                         this.bookSearchResults.push({
                             title: book.volumeInfo.title,
-                            author: book.volumeInfo.authors,
+                            author: book.volumeInfo.authors[0],
                             image: book.volumeInfo.imageLinks.thumbnail
                         });
                         

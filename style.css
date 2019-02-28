@@ -428,6 +428,8 @@ input {
     color: red;
     border: none;
     font-size: 18px;
-    margin-left: 167px;
     margin-bottom: 0px;
+    position: relative;
+    left: 85px;
+    bottom: 5px;
 }
