@@ -2,6 +2,8 @@
 
 [Midterm](https://bookclubweb.herokuapp.com/)
 
+[Wireframes](https://xd.adobe.com/view/e474385c-8f12-4b3e-4de7-6cd650f2c3f7-9245/)
+
 
 ## Name of Resource and Attributes 
 

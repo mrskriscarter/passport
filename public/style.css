@@ -470,3 +470,11 @@ input {
 .stylerating {
     color: #fff266;
 }
+
+#errors {
+    color:red;
+}
+
+.errors {
+    background-color:none;
+}

@@ -48,7 +48,16 @@
                 <div id="logInPage" v-show="isLogPage">        
                     <h2>LOG IN </h2><br><br><br>
                         <input type ="text" v-model="logemail" placeholder="EMAIL"><br><br>
+                        <div id ="errors" v-if="errors.length > 0">
+                                Email is required
+                                <ul>
+                                    <li v-for="error in errors">
+                                        {{ error }}
+                                    </li>
+                                </ul>
+                            </div>
                         <button id ="loginpagebutton" class="subbutt" v-on:click="showTopBookList">ENTER</button>
+                
                 </div>
 
 
@@ -59,6 +68,13 @@
                         <input type ="text" v-model="name" placeholder="FULL NAME"><br><br>
                         <input type ="text" v-model="email" placeholder="EMAIL"><br><br>
                         <button id ="signpagebutton" class="subbutt" v-on:click="addUser" >SUBMIT</button>
+                        <div id ="errors" v-if="errors.length > 0">
+                                <ul id="errorsdiv">
+                                    <li v-for="error in errors">
+                                        {{ error }}
+                                    </li>
+                                </ul>
+                            </div>
                 </div>
                    
                 </div>
@@ -128,8 +144,8 @@
                     Title: <br> <input type ="text" v-model="newBook.title" placeholder="TITLE"><br>
                     Author's Name: <br><input type ="text" v-model="newBook.author" placeholder="AUTHOR'S NAME"><br>
                     <h4> Which List Does This Book Go In?</h4>
-                    <input type="checkbox" v-model="newBook.completed">Completed</input><br>
-                    <input type="checkbox">To Read</input><br>
+                    <input type="radio" v-model="newBook.completed">Completed</input><br>
+                    <input type="radio">To Read</input><br>
                     <div v-show="newBook.completed">
                         <input type="date" v-model="newBook.dated">
                         <select name="rating" v-model="newBook.rating">
@@ -139,6 +155,13 @@
                         </select>
                     </div>  <br>
                     <button class="subbutt" v-show="isAddBookShow" v-on:click="addBook">Submit</button>
+                    <div id ="errors" v-if="errors.length > 0" v-bind:class="errors">
+                            <ul>
+                                <li v-for="error in errors">
+                                    {{ error }}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
