@@ -11,7 +11,7 @@
  }
 body {
     margin: auto 0;
-    height: 1000px;
+    height: 800px;
     
 }
 
@@ -21,6 +21,12 @@ body {
     flex-wrap: nowrap;
     height: 800px;
     background-color:#202020;
+}
+
+h4 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+    color:white;
 }
 
 
@@ -82,7 +88,7 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 20%;
-    height: 1200px;
+    height: 800px;
     background-color:black;
   }
 
@@ -144,6 +150,7 @@ body {
 
   }
 
+ 
   
 
 
@@ -236,7 +243,7 @@ body {
 
 #CompletedListPage div {
     width: 200px;
-    height:350px;
+    height:300px;
     float: left;
     text-align:center;
     margin: 5px 10px 5px 10px;
@@ -246,6 +253,7 @@ body {
     color: white;
     font-family: 'Open Sans Condensed', sans-serif;
     background-color: black;
+    box-shadow: 0px 0px 10px #f97fde;
     
 }
 
@@ -289,6 +297,7 @@ body {
     background-color:black;
     color:white;
     font-family: 'Open Sans Condensed', sans-serif;
+    box-shadow: 0px 0px 10px #f97fde;
     
 }
 
@@ -318,7 +327,7 @@ body {
 
 #ToReadListPage div {
     width: 200px;
-    height:300px;
+    height:270px;
     float: left;
     text-align:center;
     margin: 5px 10px 5px 10px;
@@ -327,6 +336,7 @@ body {
     background-color:black;
     color:white;
     font-family: 'Open Sans Condensed', sans-serif;
+    box-shadow: 0px 0px 10px #f97fde;
     
 }
 
@@ -349,7 +359,7 @@ body {
 }
 #TopBookPage div {
     width: 200px;
-    height:300px;
+    height:270px;
     float: left;
     text-align:center;
     margin: 5px 10px 5px 10px;
@@ -358,6 +368,7 @@ body {
     background-color:black;
     color:white;
     font-family: 'Open Sans Condensed', sans-serif;
+    box-shadow: 0px 0px 10px #f97fde;
     
 }
 
@@ -403,10 +414,14 @@ input {
 }
 
 #addbookform {
-    color:purple;
+    color:black;
     width:500px;
     margin-left: 330px;
     margin-top: 80px;
+    background-color: #997ADB;
+    padding: 10px;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 55px #fff, 0 0 75px #fff;
+
 }
 
 #addbookpage {
@@ -415,7 +430,12 @@ input {
     top: 79px;
 }
 
-#selectbutton {
+#formdiv {
+    display: block;
+    margin-left: 168px;
+}
+
+.selectbutton {
     color: black;
     background-color: #f97fde;
     font-family: 'Open Sans Condensed', sans-serif;
@@ -432,4 +452,21 @@ input {
     position: relative;
     left: 85px;
     bottom: 5px;
+}
+
+.styletitle {
+    color: #ffc888;
+    font-size: 18px;
+}
+
+.styleauthor {
+    color: #67cfee;
+}
+
+.styledate {
+    color: #abf09b;
+}
+
+.stylerating {
+    color: #fff266;
 }

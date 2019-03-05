@@ -68,10 +68,10 @@
             <div id="TopBookPage" v-show="isTopBooks">
                 <h2>My Favorite Books </h2>
                     <div v-for="book in topBooks">
-                        <strong>Title:</strong> {{ book.title }} <br>
-                        <strong>Author:</strong> {{ book.author }} <br>
-                        <img v-bind:src="book.image"><br><br>
-                        <strong>Rating: </strong> {{ book.rating }}<br>
+                        <strong class="styletitle">Title:</strong> {{ book.title }} <br>
+                        <img v-bind:src="book.image"><br>
+                        <strong class="styleauthor">Author:</strong> {{ book.author }} <br>
+                        <strong class="stylerating">Rating: </strong> {{ book.rating }}<br>
 
                     </div>
 
@@ -85,11 +85,11 @@
 
                         <div v-for="book in completedBooks">
                                 <button id="deletebutton" v-on:click="deletebook(book)">X</button><br>
-                                <strong>Title: </strong>{{ book.title }} <br>
-                                <img v-bind:src="book.image"><br><br>
-                                <strong>Author: </strong>{{ book.author }}<br>
-                                <strong>Date Completed: </strong> {{ formatDate(book.dated) }}<br>
-                                <strong>Rating: </strong> {{ book.rating }} <br>
+                                <strong class="styletitle">Title: </strong>{{ book.title }} <br>
+                                <img v-bind:src="book.image"><br>
+                                <strong class="styleauthor">Author: </strong>{{ book.author }}<br>
+                                <strong class="styledate">Date Completed: </strong> {{ formatDate(book.dated) }}<br>
+                                <strong class="stylerating">Rating: </strong> {{ book.rating }} <br>
                 
                                 
                         </div>
@@ -103,9 +103,10 @@
 
                     <div v-for="book in toreadBooks">
                             <button id="deletebutton" v-on:click="deletebook(book)">X</button> <br>
-                            <strong>Title: </strong>{{ book.title }} <br><br>
-                            <img v-bind:src="book.image"><br><br>
-                            <strong>Author: </strong>{{ book.author }}<br>
+                            <strong class="styletitle">Title: </strong>{{ book.title }} <br>
+                            <img v-bind:src="book.image"><br>
+                            <strong class="styleauthor">Author: </strong>{{ book.author }}<br><br>
+                            <button class="selectbutton">Add to Completed</button>
     
                     </div>
             </div>
@@ -123,6 +124,7 @@
 
                     <div id="addbookform" v-show="isAddForm">
                             <h2>Add Book</h2>
+                            <div id ="formdiv">
                     Title: <br> <input type ="text" v-model="newBook.title" placeholder="TITLE"><br>
                     Author's Name: <br><input type ="text" v-model="newBook.author" placeholder="AUTHOR'S NAME"><br>
                     <h4> Which List Does This Book Go In?</h4>
@@ -138,6 +140,7 @@
                     </div>  <br>
                     <button class="subbutt" v-show="isAddBookShow" v-on:click="addBook">Submit</button>
                     </div>
+                </div>
 
              
               
@@ -146,10 +149,10 @@
             <div id="searchResultsPage" v-show="isSearchResultsPage">
                 <h2>Search Results</h2>
                     <div v-for="book in bookSearchResults" v-on:click="selectSearchResult(book)">
-                            <strong>Title: </strong><br>{{ book.title }}<br><br>
-                            <img v-bind:src="book.image"><br><br>
-                            <strong>Author: </strong>{{ book.author }}<br>
-                            <button id="selectbutton" v-on:click="showAddForm" >Select</button>
+                            <strong class="styletitle">Title: </strong><br>{{ book.title }}<br>
+                            <img v-bind:src="book.image"><br>
+                            <strong class="styleauthor">Author: </strong>{{ book.author }}<br>
+                            <button class="selectbutton" v-on:click="showAddForm" >Select</button>
                             
                     </div>
 

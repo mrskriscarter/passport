@@ -164,7 +164,9 @@ var app = new Vue({
 
             createBook(this.newBook). then(response => {
                 console.log("Book was created.");
+                this.isTopBooks = true;
                 this.refreshBooks();
+                
 
             });
 
@@ -292,6 +294,9 @@ var app = new Vue({
             this.isAddForm = true;
             this.isSearchResultsPage = false;
             this.isAddBookShow = true;
+            this.isToReadList = false;
+            this.isCompletedList = false;
+            this.isTopBooks = false;
         },
 
         refreshUsers: function() {
@@ -352,9 +357,8 @@ var app = new Vue({
     },
     created: function () {
         console.log("Vue is Ready.");
-        // this.refreshCompletedBooks();
-        // this.refreshToReadBooks();
-        // this.refreshUsers();
+         this.refreshBooks();
+         this.refreshUsers();
 
 
 
