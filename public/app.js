@@ -258,6 +258,7 @@ var app = new Vue({
                 this.refreshBooks();
                 console.log("book was deleted");
               });
+              this.refreshBooks();
           },
 
 
