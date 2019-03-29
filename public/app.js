@@ -1,5 +1,5 @@
-var ROOT_URL = "https://bookclubweb.herokuapp.com";
-
+//var ROOT_URL = "https://bookclubweb.herokuapp.com";
+var ROOT_URL ="http://localhost:8080";
 var getGoogleBookInfo = function (bookName) {
     // https://www.googleapis.com/books/v1/volumes?q=intitle:fire&key=AIzaSyDAC0_WOd94tVrnHii1zNP7VCDBdUBhrzc
     return fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${bookName}&key=AIzaSyDAC0_WOd94tVrnHii1zNP7VCDBdUBhrzc`);
@@ -19,6 +19,7 @@ var createBook = function (book) {
         headers: {
             "Content-type": "application/x-www-form-urlencoded"
         },
+        credentials: 'include',
         body: data
     });
 };
@@ -26,45 +27,61 @@ var createBook = function (book) {
 var createUser = function (user) {
     var data = `name=${encodeURIComponent(user.name)}`;
     data += `&email=${encodeURIComponent(user.email)}`;
+    data += `&plainPassword=${encodeURIComponent(user.plainPassword)}`;
 
     return fetch(`${ROOT_URL}/users`, {
         method: "POST",
         headers: {
             "Content-type": "application/x-www-form-urlencoded"
         },
+        credentials: 'include',
         body: data
     });
 };
 
+
+
 var getBooks = function () {
-    return fetch(`${ROOT_URL}/books`);
+    return fetch(`${ROOT_URL}/books`, {
+        credentials: 'include'
+    });
 };
 
 var getCompletedBooks = function () {
-    return fetch(`${ROOT_URL}/books?completed=true`);
+    return fetch(`${ROOT_URL}/books?completed=true`, {
+        credentials: 'include'
+    });
 };
 
 var getToReadBooks = function () {
-    return fetch(`${ROOT_URL}/books?completed=false`);
+    return fetch(`${ROOT_URL}/books?completed=false`, {
+        credentials: 'include'
+    });
 };
 
 var getTopBooks = function () {
-    return fetch(`${ROOT_URL}/books?rating=3`);
+    return fetch(`${ROOT_URL}/books?rating=3`, {
+        credentials: 'include'
+    });
 }
 
 var getUsers = function () {
-    return fetch(`${ROOT_URL}/users`);
+    return fetch(`${ROOT_URL}/users`, {
+        credentials: 'include'
+    });
 };
 
 var deleteBook = function (book){
     return fetch(`${ROOT_URL}/books/` + book._id, {
-        method: "DELETE"
+        method: "DELETE",
+        credentials: 'include'
     });
 };    
 
 var deleteUser = function (user){
     return fetch(`${ROOT_URL}/users/` + user._id, {
-        method: "DELETE"
+        method: "DELETE",
+        credentials: 'include',
     });
 };   
 
@@ -137,15 +154,6 @@ var app = new Vue({
             
         },
 
-        validateUser: function () {
-            this.errors = [];
-            if (this.name.length == 0 ) {
-                this.errors.push("Name is required")
-            }
-            if (this.email.length == 0){
-                this.errors.push("Email is required")
-            }
-        },
 
         formatDate: function(dated) {
             return moment(dated).format("MMM Do YYYY");
@@ -185,13 +193,35 @@ var app = new Vue({
             
         },
 
+        validateUser: function () {
+            this.errors = [];
+            if (this.name.length == 0 ) {
+                this.errors.push("Name is required")
+            }
+            if (this.email.length == 0){
+                this.errors.push("Email is required")
+            }
+        },
+
         addUser: function () {
             createUser({
                 name: this.name,
                 email: this.email,
+                plainPassword: this.plainPassword
             }). then(response => {
-                this.refreshUsers();
-                console.log("User was created");
+                if (response.status == 422) {
+                    // validation errors
+                    response.json().then(function (errors){
+                        console.log(errors);
+                    });
+                } else if (response.status == 201){
+                    // succesfully created
+                    this.refreshUsers();
+                    console.log("User was created");
+                } else {
+                        alert ("Bad things happened")
+                    }
+                
             });
             
             this.name = "";
