@@ -120,9 +120,10 @@ var app = new Vue({
 
         name: "",
         email: "",
+        plainPassword: "",
 
         logemail: "",
-        logpass: "",
+        logpassword: "",
         signname: "",
         signemail: "",
         signpass: "",
@@ -201,6 +202,8 @@ var app = new Vue({
             if (this.email.length == 0){
                 this.errors.push("Email is required")
             }
+
+            return this.errors.length > 0;
         },
 
         addUser: function () {
@@ -263,7 +266,41 @@ var app = new Vue({
                 console.log(this.toreadBooks);
             });
         },
+        login: function() {
+            this.errors = [];
+            var data = `email=${encodeURIComponent(this.logemail)}`;
+            data += `&plainPassword=${encodeURIComponent(this.logpassword)}`;
 
+            if(this.logemail.length == 0 ) {
+                this.errors.push("Email is required");
+            }
+            if(this.logpassword.length == 0) {
+                this.errors.push("Password is required");
+            }
+
+            if(this.errors > 0) {
+                return;
+            }
+
+            fetch(`${ROOT_URL}/session`, {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded"
+                },
+                credentials: 'include',
+                body: data
+            }).then((value) => {
+                debugger;
+                if (value.status === 201) {
+                    this.showTopBookList();
+                } else {
+                    //this.errors.push("Bad username/password. Try again.")
+                    console.log("You done screwed up homes.");
+                }
+            }).catch((ex) => {
+                debugger;
+            });
+        }, 
         showTopBookList: function () {
            this.isTopBooks = true;
            this.isSearchForm = false;

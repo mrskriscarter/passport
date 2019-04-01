@@ -50,14 +50,13 @@
                         <input type ="text" v-model="logemail" placeholder="EMAIL"><br><br>
                         <input type="password" v-model="logpassword" placeholder="PASSWORD"><br>
                         <div id ="errors" v-if="errors.length > 0">
-                                Email is required
                                 <ul>
                                     <li v-for="error in errors">
                                         {{ error }}
                                     </li>
                                 </ul>
                             </div>
-                        <button id ="loginpagebutton" class="subbutt" v-on:click="showTopBookList">ENTER</button>
+                        <button id ="loginpagebutton" class="subbutt" v-on:click="login" :disabled="logemail.length == 0 ">ENTER</button>
                 
                 </div>
 
@@ -68,6 +67,7 @@
                     <h2>SIGN UP</h2><br>
                         <input type ="text" v-model="name" placeholder="FULL NAME"><br><br>
                         <input type ="text" v-model="email" placeholder="EMAIL"><br><br>
+                        <input type ="password" v-model="plainPassword" placeholder="PASSWORD"><br><br>
                         <button id ="signpagebutton" class="subbutt" v-on:click="addUser" >SUBMIT</button>
                         <div id ="errors" v-if="errors.length > 0">
                                 <ul id="errorsdiv">

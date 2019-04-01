@@ -11,8 +11,13 @@ app.set('port', (process.env.PORT || 8080));
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded( { extended: false }));
-app.use(cors({ credentials: true, origin: 'null, bookclubweb.herokuapp.com' })); 
-app.use(session({ secret: 'keyboard fish', resave: false, saveUninitialized: true }));
+//app.use(cors({ credentials: true, origin: 'null, bookclubweb.herokuapp.com, localhost' })); 
+app.use(cors({ credentials: true, origin:"http://localhost:8081"}));
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -24,13 +29,16 @@ passport.use(new passportLocal.Strategy({
     usernameField: 'email',
     passwordField: 'plainPassword'
   }, function (email, plainPassword, done) {
-  
+  console.log("Start");
     model.User.findOne({ email: email }).then(function (user) {
+        console.log("Start2");
       if (!user) {
         // failed authentication, report back
+        console.log("Start3");
         return done(null, false);
       }
       user.verifyPassword(plainPassword, function (valid) {
+        console.log("Start4");
         if (valid) {
           // successful authentication, report back
           return done(null, user);
@@ -62,13 +70,15 @@ passport.use(new passportLocal.Strategy({
   app.post('/session', passport.authenticate('local'), function (req, res) {
     // on successful authentication: 
     res.sendStatus(201);
+   // res.redirect('/');
   });
   
   
   // me action
   app.get('/session', function (req, res) {
     if (req.user) {
-      res.sendStatus(200);
+        res.json(req.user);
+      
       //user is logged in
 
     } else {
